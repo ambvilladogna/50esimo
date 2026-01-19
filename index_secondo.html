@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50° Anniversario - Associazione Micologica Bresadola</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fafaf8;
+            color: #2a2a2a;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 50%, #3a7048 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            position: relative;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            padding: 1rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .anniversary-number {
+            position: relative;
+            font-size: clamp(5rem, 20vw, 12rem);
+            font-weight: 900;
+            color: #fff;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .anniversary-number span {
+            font-size: 0.5em;
+            vertical-align: super;
+            margin-left: -0.1em;
+        }
+
+        .hero-title {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            max-width: 600px;
+            padding: 0 1.5rem;
+            margin-top: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .subtitle {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-top: 0.5rem;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            animation: bounce 2s infinite;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInCard 0.8s ease-out forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+        .card:nth-child(4) { animation-delay: 0.8s; }
+
+        .card-title {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            color: #1a4d2e;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #d4552f, #e67a4a);
+            border-radius: 2px;
+        }
+
+        .card-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #4a4a4a;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
+            border-left: 4px solid #d4552f;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .date-location {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a4d2e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2a2a2a;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 6px 20px rgba(26, 77, 46, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 77, 46, 0.4);
+        }
+
+        .gallery-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        footer {
+            background: #1a4d2e;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInCard {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%, 0);
+            }
+            50% {
+                transform: translate(-50%, -10px);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                padding: 3rem 3.5rem;
+            }
+
+            .date-location {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .gallery-preview {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="logo-container">
+           <img src="logo.png" width="120" height="120">
+        </div>
+        <h1 class="anniversary-number">50<span>°</span></h1>
+        <p class="hero-title">Anniversario di fondazione</p>
+        <p class="subtitle">Associazione Micologica Bresadola<br>Gruppo di Villa d'Ogna</p>
+        <div class="scroll-indicator">Scorri ↓</div>
+    </section>
+
+    <div class="content">
+        <div class="card">
+            <h2 class="card-title">Una storia lunga mezzo secolo</h2>
+            <div class="card-content">
+                <p>Dal 1975, l'Associazione Micologica Bresadola di Villa d'Ogna è punto di riferimento per gli appassionati di micologia del territorio. Cinquant'anni di passione, ricerca e condivisione della conoscenza del regno dei funghi.</p>
+                <div class="highlight-box">
+                    <strong>Un traguardo importante</strong> che vogliamo celebrare insieme a tutti coloro che hanno contribuito a questa straordinaria avventura.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">Celebrazione ufficiale</h2>
+            <div class="card-content">
+                <p>Vi invitiamo a partecipare alla festa celebrativa che abbiamo organizzato per questo importante anniversario.</p>
+                <div class="date-location">
+                    <div class="info-item">
+                        <div class="info-icon">📅</div>
+                        <div class="info-text">
+                            <div class="info-label">Data</div>
+                            <div class="info-value">Da definire</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <div class="info-label">Luogo</div>
+                            <div class="info-value">Villa d'Ogna</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="cta-button">Maggiori informazioni</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">Momenti da ricordare</h2>
+            <div class="card-content">
+                <p>Una raccolta di immagini che raccontano la nostra storia: dalle prime uscite in natura alle mostre micologiche, dai corsi di formazione agli eventi culturali.</p>
+                <div class="gallery-preview">
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=800&h=600&fit=crop"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&h=600&fit=crop"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=800&h=600&fit=crop"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1615719413546-198b25453f85?w=800&h=600&fit=crop"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">Unisciti a noi</h2>
+            <div class="card-content">
+                <p>L'Associazione Micologica Bresadola continua la sua missione di promozione della conoscenza micologica e della tutela ambientale. Se condividi la nostra passione, ti aspettiamo!</p>
+                <p style="margin-top: 1rem;">Per informazioni su iscrizioni, attività e iniziative, contattaci attraverso i nostri canali ufficiali.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Associazione Micologica Bresadola</strong><br>Villa d'Ogna - 50 anni di passione per la micologia</p>
+    </footer>
+</body>
+</html>
