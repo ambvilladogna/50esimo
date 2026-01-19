@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50° Anniversario - Associazione Micologica Bresadola</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            background: #f5f1e8;
+            color: #3d3020;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+            color: #f5f1e8;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: #f5f1e8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .header-text h1 {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.2rem;
+            color: #ffd700;
+        }
+
+        .header-text p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        main {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #2d5016;
+            margin-bottom: 0.3rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .curator {
+            text-align: center;
+            font-style: italic;
+            color: #6b5d4f;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            padding: 0 1rem;
+        }
+
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            background: #2d2d2d;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            touch-action: pan-y;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 70%, transparent 100%);
+            color: white;
+            padding: 3rem 1.5rem 1rem 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.4);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #4a7c2c 0%, #2d5016 100%);
+            color: #f5f1e8;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .cta-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .cta-section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .event-date {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #ffd700;
+            margin: 1rem 0;
+        }
+
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #4a7c2c;
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .fab svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .fab:hover {
+            background: #2d5016;
+            transform: scale(1.1);
+        }
+
+        .fab:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 480px) {
+            .header-text h1 {
+                font-size: 1.1rem;
+            }
+            
+            .header-text p {
+                font-size: 0.85rem;
+            }
+
+            .slide img {
+                height: 350px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .slide img {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="logo.png" width="70" height="70"></div>
+        <div class="header-text">
+            <h1>50° Anniversario di fondazione</h1>
+            <p>Ass. Micologica Bresadola - Villa d'Ogna</p>
+        </div>
+    </header>
+
+    <main id="content"></main>
+
+    <div class="floating-buttons">
+        <button class="fab" onclick="window.open('https://www.esempio-sito-gruppo.it', '_blank')" title="Visita il sito">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+        </button>
+        <button class="fab" onclick="shareWebsite()" title="Condividi">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const data = {
+            sections: [
+                {
+                    id: "annulli",
+                    title: "I migliori annulli postali",
+                    curator: "scelti da Mari",
+                    items: [
+                        {
+                            image: "https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=800&h=600&fit=crop",
+                            caption: "Annullo commemorativo del 1975 - Il primo decennio di attività del gruppo"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&h=600&fit=crop",
+                            caption: "Celebrazione del ventennale 1985 - Una mostra memorabile"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=800&h=600&fit=crop",
+                            caption: "Edizione speciale 1995 - Trent'anni di passione micologica"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1615719413546-198b25453f85?w=800&h=600&fit=crop",
+                            caption: "Annullo del 2005 - Quarant'anni di tradizione e cultura"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800&h=600&fit=crop",
+                            caption: "Serie commemorativa 2015 - Il cammino verso il cinquantesimo"
+                        }
+                    ]
+                },
+                {
+                    id: "manifesti",
+                    title: "I migliori manifesti delle mostre",
+                    curator: "scelti da Luigi",
+                    items: [
+                        {
+                            image: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=800&h=600&fit=crop",
+                            caption: "1975 - Il manifesto della prima mostra, un pezzo di storia"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1509439581779-6298f75bf6e5?w=800&h=600&fit=crop",
+                            caption: "1985 - Design innovativo per celebrare vent'anni di impegno"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1518790841217-8f162f1e1131?w=800&h=600&fit=crop",
+                            caption: "1995 - Arte e natura si fondono nel manifesto del trentennale"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&h=600&fit=crop",
+                            caption: "2005 - Quarant'anni raccontati attraverso le immagini del territorio"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop",
+                            caption: "2015 - Il manifesto che ha aperto la strada al giubileo"
+                        }
+                    ]
+                },
+                {
+                    id: "gruppo",
+                    title: "Le migliori foto di gruppo",
+                    curator: "scelte da Piero",
+                    items: [
+                        {
+                            image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop",
+                            caption: "1975 - I fondatori del gruppo in una storica uscita nei boschi"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop",
+                            caption: "1985 - La famiglia micologica si allarga, nuove generazioni"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&h=600&fit=crop",
+                            caption: "1995 - Momento conviviale durante la mostra del trentennale"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&h=600&fit=crop",
+                            caption: "2005 - Tre generazioni unite dalla passione per i funghi"
+                        },
+                        {
+                            image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&h=600&fit=crop",
+                            caption: "2015 - Il gruppo al completo, pronti per il grande traguardo"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        let currentSlides = {};
+
+        function createSlider(section) {
+            const slides = section.items.map((item, idx) => `
+                <div class="slide">
+                    <img src="${item.image}" alt="${item.caption}">
+                    <div class="caption">${item.caption}</div>
+                </div>
+            `).join('');
+
+            const dots = section.items.map((_, idx) => 
+                `<span class="dot ${idx === 0 ? 'active' : ''}" onclick="goToSlide('${section.id}', ${idx})"></span>`
+            ).join('');
+
+            return `
+                <div class="section">
+                    <h2 class="section-title">${section.title}</h2>
+                    <p class="curator">${section.curator}</p>
+                    <div class="slider-container" id="container-${section.id}">
+                        <div class="slider" id="slider-${section.id}">
+                            ${slides}
+                        </div>
+                        <div class="slider-nav" id="nav-${section.id}">
+                            ${dots}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function initSliders() {
+            data.sections.forEach(section => {
+                currentSlides[section.id] = 0;
+                
+                const container = document.getElementById(`container-${section.id}`);
+                const slider = document.getElementById(`slider-${section.id}`);
+                
+                let startX = 0;
+                let currentX = 0;
+                let isDragging = false;
+
+                container.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                });
+
+                container.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    currentX = e.touches[0].clientX;
+                });
+
+                container.addEventListener('touchend', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    
+                    const diff = startX - currentX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0 && currentSlides[section.id] < section.items.length - 1) {
+                            goToSlide(section.id, currentSlides[section.id] + 1);
+                        } else if (diff < 0 && currentSlides[section.id] > 0) {
+                            goToSlide(section.id, currentSlides[section.id] - 1);
+                        }
+                    }
+                });
+            });
+        }
+
+        function goToSlide(sectionId, slideIndex) {
+            const slider = document.getElementById(`slider-${sectionId}`);
+            const dots = document.querySelectorAll(`#nav-${sectionId} .dot`);
+            
+            currentSlides[sectionId] = slideIndex;
+            slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+            
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === slideIndex);
+            });
+        }
+
+        function shareWebsite() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '50° Anniversario Ass. Micologica Bresadola',
+                    text: 'Scopri la storia del nostro gruppo!',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copiato negli appunti!');
+                });
+            }
+        }
+
+        // Render content
+        const mainContent = document.getElementById('content');
+        const sectionsHTML = data.sections.map(createSlider).join('');
+        const ctaHTML = `
+            <div class="section cta-section">
+                <h2>Vieni a celebrare con noi!</h2>
+                <p>Partecipa alla prossima Mostra del Fungo e della Natura che si terrà a Villa d'Ogna</p>
+                <p class="event-date">dal 15 al 22 agosto</p>
+                <p>Potrai conoscere Mari, Luigi e Piero e ripercorrere insieme la storia del gruppo</p>
+            </div>
+        `;
+        
+        mainContent.innerHTML = sectionsHTML + ctaHTML;
+        
+        // Initialize sliders after content is rendered
+        setTimeout(initSliders, 100);
+    </script>
+</body>
+</html>
