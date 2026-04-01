@@ -107,6 +107,38 @@
             text-transform: uppercase;
             letter-spacing: 0.2em;
             animation: bounce 2s infinite;
+            margin-top: auto;
+        }
+
+        /* short viewports: hide the arrow rather than let it collide */
+        @media (max-height: 600px) {
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        /* mid-height viewports (e.g. 768px-tall laptop at unusual zoom):
+           pull it closer to the bottom so it clears the text block */
+        @media (max-height: 780px) and (min-height: 601px) {
+            .scroll-indicator {
+                bottom: 4rem;
+                font-size: 0.65rem;
+            }
+
+            /* also reduce hero text sizes a touch so content breathes */
+            .anniversary-number {
+                font-size: clamp(5rem, 16vw, 9rem);
+            }
+
+            .hero-title {
+                font-size: clamp(0.9rem, 2vw, 1.1rem);
+                margin-top: 0.8rem;
+            }
+
+            .logo {
+                width: 72px;
+                height: 72px;
+            }
         }
 
         .content {
@@ -420,14 +452,15 @@
                 <p>Nel 2026 compie 50 anni anche la "Mostra del Fungo e della Natura", ormai tradizionale appuntamento
                     estivo a Villa d'Ogna, dove vengono esposti funghi freschi raccolti nelle nostre valli, identificati
                     e catalogati
-                    dai soci micologi, e accompagnati da pannelli infromativi e note didattiche per grandi e piccini.
+                    dai soci micologi, e accompagnati da pannelli informativi e note didattiche per grandi e piccini.
                 </p>
                 <p>
                     Di seguito una piccola selezione delle immagini storiche della mostra e del gruppo.
                 </p>
                 <p>
-                    Una raccolta completa di foto storiche, dal 1976 ad oggi, si potrà ammirare durante la "50° Mostra del Fungo e della Natura" presso
-                    la scuola primaria di Villa d'Ogna, largo Europa 70, Villa d'Ogna, Bergamo, dal 9 al 16 agosto 2026.
+                    Una raccolta completa di foto storiche, dal 1976 ad oggi, si potrà ammirare durante la "50° Mostra
+                    del Fungo e della Natura" presso
+                    la scuola primaria di Villa d'Ogna, largo Europa 70, Villa d'Ogna, Bergamo, dal 8 al 16 agosto 2026.
                 </p>
             </div>
         </div>
@@ -441,10 +474,11 @@
 
     <footer>
         <p>
-            <a href="https://www.ambvilladogna.it"><strong>Associazione Micologica Bresadola</strong><br>gruppo di Villa
-                d'Ogna</a><br> 50 anni di passione per la
-            micologia
+            <strong>Associazione Micologica Bresadola</strong><br>gruppo di Villa
+            d'Ogna<br> 50 anni di passione per la micologia <br>
         </p>
+        <p>Scopri di più sul nostro gruppo: visita il sito web <a
+                href="https://www.ambvilladogna.it">www.ambvilladogna.it</a>.</p>
     </footer>
 
     <script>
@@ -452,7 +486,7 @@
             sections: [
                 {
                     id: "annulli",
-                    title: "6 manifesti della mostra",
+                    title: "I manifesti della mostra",
                     curator: "",
                     items: [
                         {
@@ -479,7 +513,7 @@
                 },
                 {
                     id: "manifesti",
-                    title: "6 annulli postali e cartoline commemorative della mostra",
+                    title: "Gli annulli postali e le cartoline commemorative della mostra",
                     curator: "",
                     items: [
                         {
@@ -506,7 +540,7 @@
                 },
                 {
                     id: "gruppo",
-                    title: "6 scatti delle persone che hanno fatto la storia del gruppo",
+                    title: "Le persone che hanno fatto la storia del gruppo",
                     curator: "",
                     items: [
                         {
