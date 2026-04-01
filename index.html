@@ -110,6 +110,10 @@
         }
 
         .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -387,6 +391,7 @@
         @media (min-width: 768px) {
             .card {
                 padding: 3rem 0;
+                max-width: 1000px;
             }
         }
     </style>
@@ -407,34 +412,39 @@
         <div class="card">
             <h1 class="card-title">Una storia lunga mezzo secolo</h1>
             <div class="card-content">
-                <p>Dal 1976, il gruppo di Villa d'Ogna dell'Associazione Micologica Bresadola è punto di riferimento per
-                    gli appassionati di micologia del territorio.<br>Cinquant'anni di passione, ricerca e condivisione
-                    della
-                    conoscenza del regno dei funghi.</p>
+                <p>Nato nel 1976, dall'intuizione del micologo Mario Galli, il gruppo di Villa d'Ogna dell'Associazione
+                    Micologica Bresadola è punto di riferimento per gli appassionati di micologia del
+                    territorio.<br>Cinquant'anni di passione, ricerca e condivisione della conoscenza del regno dei
+                    funghi.
+                </p>
+                <p>Nel 2026 compie 50 anni anche la "Mostra del Fungo e della Natura", ormai tradizionale appuntamento
+                    estivo a Villa d'Ogna, dove vengono esposti funghi freschi raccolti nelle nostre valli, identificati
+                    e catalogati
+                    dai soci micologi, e accompagnati da pannelli infromativi e note didattiche per grandi e piccini.
+                </p>
+                <p>
+                    Di seguito una piccola selezione delle immagini storiche della mostra e del gruppo.
+                </p>
+                <p>
+                    Una raccolta completa di foto storiche, dal 1976 ad oggi, si potrà ammirare durante la "50° Mostra del Fungo e della Natura" presso
+                    la scuola primaria di Villa d'Ogna, largo Europa 70, Villa d'Ogna, Bergamo, dal 9 al 16 agosto 2026.
+                </p>
             </div>
         </div>
 
         <div class="card">
-            <h1 class="card-title">Momenti da ricordare</h1>
             <div class="card-content" id="slider">
             </div>
         </div>
 
-        <div class="card">
-            <h1 class="card-title">Vieni a celebrare con noi!</h1>
-            <div class="card-content">
-                <p>Partecipa alla prossima</p>
-                <p class="event-date">"Mostra del Fungo e della Natura"</p>
-                <p>che si terrà presso la scuola primaria di Villa d'Ogna</p>
-                <p class="event-date">dal 15 al 22 agosto</p>
-                <p>Potrai conoscere Mari, Luigi e Piero e ripercorrere insieme la storia del gruppo.</p>
-            </div>
-        </div>
     </div>
 
     <footer>
-        <p><strong>Associazione Micologica Bresadola</strong><br>gruppo di Villa d'Ogna<br> 50 anni di passione per la
-            micologia</p>
+        <p>
+            <a href="https://www.ambvilladogna.it"><strong>Associazione Micologica Bresadola</strong><br>gruppo di Villa
+                d'Ogna</a><br> 50 anni di passione per la
+            micologia
+        </p>
     </footer>
 
     <script>
@@ -442,8 +452,8 @@
             sections: [
                 {
                     id: "annulli",
-                    title: "I migliori annulli postali",
-                    curator: "scelti da Mari",
+                    title: "6 manifesti della mostra",
+                    curator: "",
                     items: [
                         {
                             image: "https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=800&h=600&fit=crop",
@@ -469,8 +479,8 @@
                 },
                 {
                     id: "manifesti",
-                    title: "I migliori manifesti delle mostre",
-                    curator: "scelti da Luigi",
+                    title: "6 annulli postali e cartoline commemorative della mostra",
+                    curator: "",
                     items: [
                         {
                             image: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=800&h=600&fit=crop",
@@ -496,8 +506,8 @@
                 },
                 {
                     id: "gruppo",
-                    title: "Le migliori foto di gruppo",
-                    curator: "scelte da Piero",
+                    title: "6 scatti delle persone che hanno fatto la storia del gruppo",
+                    curator: "",
                     items: [
                         {
                             image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop",
@@ -540,7 +550,7 @@
 
             return `
                 <div class="section">
-                    <h2 class="section-title">${section.title}</h2>
+                    <h1 class="section-title">${section.title}</h1>
                     <p class="curator">${section.curator}</p>
                     <div class="slider-container" id="container-${section.id}">
                         <button class="slider-arrow prev" onclick="prevSlide('${section.id}')">‹</button>
