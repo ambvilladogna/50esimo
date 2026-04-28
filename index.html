@@ -303,9 +303,9 @@
 
         .slide img {
             width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            display: block;
+            max-height: 70svh;
+            object-fit: contain;
+            background: #1c1c1c;
         }
 
         .caption {
@@ -416,7 +416,7 @@
             object-fit: contain;
             border-radius: 2px;
             /* allow native browser pinch-zoom */
-            touch-action: pinch-zoom;
+            touch-action: pan-x pan-y pinch-zoom;
             cursor: default;
         }
 
@@ -589,9 +589,10 @@
                 soci, accompagnati da schede didattiche e pannelli illustrativi. Vengono i bambini, vengono gli adulti,
                 vengono persone che non sanno ancora di essere appassionati.</p>
 
-            <p>Qui sotto, una piccola selezione di immagini storiche.<br>La raccolta completa — dal 1976 a oggi — sarà
-                esposta durante la <strong>50° Mostra del Fungo e della Natura</strong>, presso la scuola primaria di
-                Villa d'Ogna, largo Europa 70, Bergamo, <strong>dal 8 al 16 agosto 2026</strong>.</p>
+            <p>Qui sotto, un’anteprima di immagini che raccontano la mostra negli anni. Saranno
+                esposte durante la <strong>50° Mostra del Fungo e della Natura</strong>, presso
+                la scuola primaria di Villa d'Ogna, largo Europa 70, Bergamo, <strong>dal 8 al 16 agosto 2026</strong>.
+            </p>
         </section>
 
         <div class="divider"><span class="divider-symbol">✦</span></div>
@@ -629,7 +630,7 @@
             1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
             1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005,
             2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
-            2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025
+            2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026
         ];
 
         const data = {
@@ -638,8 +639,9 @@
                 { id: "dec2", label: "Galleria · II", title: "Gli anni ottanta — 1981 · 1989", years: [1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989] },
                 { id: "dec3", label: "Galleria · III", title: "Gli anni novanta — 1990 · 1999", years: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999] },
                 { id: "dec4", label: "Galleria · IV", title: "Il nuovo millennio — 2000 · 2009", years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009] },
-                { id: "dec5", label: "Galleria · V", title: "Gli anni duemila — 2010 · 2019", years: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019] },
-                { id: "dec6", label: "Galleria · VI", title: "Fino ad oggi — 2020 · 2025", years: [2020, 2021, 2022, 2023, 2024, 2025] },
+                { id: "dec5", label: "Galleria · V", title: "Gli anni dieci del nuovo millennio — 2010 · 2019", years: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019] },
+                { id: "dec6", label: "Galleria · VI", title: "Gli anni venti del nuovo millennio — 2020 · 2025", years: [2020, 2021, 2022, 2023, 2024, 2025] },
+                { id: "dec7", label: "Galleria · VII", title: "Oggi — 2026", years: [2026] },
             ]
         };
 
@@ -715,7 +717,9 @@
             const slides = section.items.map((item, idx) => `
                 <div class="slide">
                     <img src="${item.image}" alt="${item.caption}" loading="lazy">
-                    <div class="caption">${item.caption}</div>
+                    <!-- no catpion overlay
+                        <div class="caption">${item.caption}</div> 
+                    -->
                 </div>
             `).join('');
 
